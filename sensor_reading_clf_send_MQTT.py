@@ -92,7 +92,7 @@ while True:
         #print
         
         # Get value from temperature and humidity sensors
-        [t,h] = grovepi.dht(dht_sensor_port,1) #0 is blue dht sensor, 1 is white dht sensor
+        [t,h] = grovepi.dht(dht_sensor_port, 1) #0 is blue dht sensor, 1 is white dht sensor
         print "temp->",t," hum->",h
         print
         sensorReadings.append(t)
@@ -102,6 +102,10 @@ while True:
         # MQTT
         sendToBroker('light_intensity', light_intensity)
         # Fill in for additional sensors
+        sendToBroker('sound_level', sound_level)
+        sendToBroker('temperature', t)
+        sendToBroker('humidity', h)
+        # Add gas sensor readings as well
         
 # Prediction     
         sensorReadings = np.array([sensorReadings])
